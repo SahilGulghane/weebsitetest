@@ -1,47 +1,88 @@
-<?php
-
-$playerOneScore = 0;
-$playerTwoScore = 0;
-
-// Start the game
-echo "Game starting!\n";
-
-// Players take turns rolling a 6-sided die
-for ($i = 0; $i < 10; $i++) {
-  $playerOneRoll = rand(1, 6);
-  $playerTwoRoll = rand(1, 6);
-  echo "\nPlayer One rolled a $playerOneRoll\n";
-  echo "Player Two rolled a $playerTwoRoll\n";
-  if ($playerOneRoll > $playerTwoRoll) {
-    $playerOneScore++;
-    echo "Player One scores a point!\n";
-  } elseif ($playerTwoRoll > $playerOneRoll) {
-    $playerTwoScore++;
-    echo "Player Two scores a point!\n";
-  } else {
-    echo "It's a tie! Nobody scores a point.\n";
-  }
-}
-
-// Determine the winner
-if ($playerOneScore > $playerTwoScore) {
-  echo "\nPlayer One wins with a score of $playerOneScore to $playerTwoScore!\n";
-} elseif ($playerTwoScore > $playerOneScore) {
-  echo "\nPlayer Two wins with a score of $playerTwoScore to $playerOneScore!\n";
-} else {
-  echo "\nIt's a tie! Both players have a score of $playerOneScore.\n";
-}
-
+<?php 
+	$player1Score = 0;
+	$player2Score = 0;
 ?>
+
 <HTML>
-  <head>
-    <title>Dice Game</title>
-  </head>
-  <body>
-    <h1>Dice Game</h1>
-    <p>
-      Player One Score: <?php echo $playerOneScore; ?><br />
-      Player Two Score: <?php echo $playerTwoScore; ?>
-    </p>
-  </body>
-</html>
+	<head>
+		<title>PHP Game</title>
+		<style>
+			.main { 
+				width: 600px; 
+				background-color: light-blue; 
+				margin: 0 auto; 
+				padding: 10px; 
+				border-radius: 15px; 
+			}
+			.player1 { 
+				float: left; 
+				margin-right: 20px; 
+				text-align: center; 
+				width: 200px; 
+				border-radius: 10px; 
+				background-color: lightgreen; 
+				padding: 10px;
+				margin-bottom: 10px;
+			}
+			.player2 { 
+				float: right; 
+				text-align: center; 
+				width: 200px; 
+				border-radius: 10px; 
+				background-color: lightcoral; 
+				padding: 10px;
+				margin-bottom: 10px;
+			}
+			.score { 
+				text-align: center; 
+				background-color: white; 
+				padding: 10px; 
+				border-radius: 10px; 
+				width: 200px; 
+				margin: 0 auto; 
+			}
+			.btn { 
+				background-color: #27ae60; 
+				color: white; 
+				border-radius: 10px; 
+				padding: 10px;
+				margin: 10px;
+			}
+			.btn:hover { 
+				background-color: #2ecc71; 
+				color: white; 
+				border-radius: 10px; 
+				padding: 10px;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<div class="player1">
+				<h3>Player 1</h3>
+				<h2><?php echo $player1Score; ?></h2>
+				<a href="?player1=up" class="btn">UP</a>
+			</div>
+			<div class="player2">
+				<h3>Player 2</h3>
+				<h2><?php echo $player2Score; ?></h2>
+				<a href="?player2=up" class="btn">UP</a>
+			</div>
+			<div class="score">
+				<h3>Score</h3>
+				<h2>
+					<?php 
+						if(isset($_GET['player1']) && $_GET['player1'] == 'up') {
+							$player1Score++;
+						}
+						if(isset($_GET['player2']) && $_GET['player2'] == 'up') {
+							$player2Score++;
+						}
+						echo $player1Score . ' - ' . $player2Score;
+					?>
+				</h2>
+			</div>
+		</div>
+	</body>
+</HTML>
