@@ -1,23 +1,36 @@
-<HTML>
+<!DOCTYPE html>
+<html>
 <head>
-    <title>College Feedback Survey</title>
+    <title>RCOEM College Feedback Survey</title>
     <style>
         body {
-            background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+            background-image: URL("backgroundImage.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     </style>
 </head>
 <body>
-    <h1>College Feedback Survey</h1>
-    <p>We would love to hear your feedback about your college experience.</p>
-    <form action="submit-feedback.php" method="post">
-        <label>What do you like about your college?</label><br>
-        <textarea name="likes" rows="4" cols="50"></textarea><br><br>
-        <label>What do you dislike about your college?</label><br>
-        <textarea name="dislikes" rows="4" cols="50"></textarea><br><br>
-        <label>What could be improved at your college?</label><br>
-        <textarea name="improvements" rows="4" cols="50"></textarea><br><br>
-        <input type="submit" value="Submit">
+    <h2>RCOEM College Feedback Survey</h2>
+    <p>We would love to hear your feedback about your experience at RCOEM. Please answer the following questions. Thank you!</p>
+    <form action="">
+        <p>Did you enjoy your experience at RCOEM?</p>
+        <input type="radio" name="experience" value="yes">Yes <be>
+        <input type="radio" name="experience" value="no">No <br>
+
+        <p>Would you recommend RCOEM to a friend?</p>
+        <input type="radio" name="recommend" value="yes">Yes <br>
+        <input type="radio" name="recommend" value="no">No <br>
+
+        <p>Would you consider studying at RCOEM again?</p>
+        <input type="radio" name="studying" value="yes">Yes <br>
+        <input type="radio" name="studying" value="no">No <be>
+
+        <p>Do you feel like your time at RCOEM was well-spent?</p>
+        <input type="radio" name="time" value="yes">Yes <be>
+        <input type="radio" name="time" value="no">No <be>
+
+       be <input type="submit" value="Submit">
     </form>
 </body>
-</HTML>
+</html>
