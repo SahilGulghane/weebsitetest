@@ -1,88 +1,99 @@
-<?php 
-	$player1Score = 0;
-	$player2Score = 0;
-?>
-
-<HTML>
-	<head>
-		<title>PHP Game</title>
-		<style>
-			.main { 
-				width: 600px; 
-				background-color: light-blue; 
-				margin: 0 auto; 
-				padding: 10px; 
-				border-radius: 15px; 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe Game</title>
+	<style>
+	.box {
+		width: 50px;
+		height: 50px;
+		border: 1px solid #000;
+		float: left;
+		text-align: center;
+		font-size: 30px;
+		line-height: 50px;
+		cursor: pointer;
+	}
+	.clear {
+		clear: both;
+	}
+	</style>
+	<script type="text/javascript">
+		function checkWinner(){
+			var boxes = document.getElementsByClassName("box");
+			if (boxes[0].innerHTML!="" && boxes[0].innerHTML==boxes[1].innerHTML && boxes[1].innerHTML==boxes[2].innerHTML) {
+				alert(boxes[0].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[3].innerHTML!="" && boxes[3].innerHTML==boxes[4].innerHTML && boxes[4].innerHTML==boxes[5].innerHTML) {
+				alert(boxes[3].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[6].innerHTML!="" && boxes[6].innerHTML==boxes[7].innerHTML && boxes[7].innerHTML==boxes[8].innerHTML) {
+				alert(boxes[6].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[0].innerHTML!="" && boxes[0].innerHTML==boxes[3].innerHTML && boxes[3].innerHTML==boxes[6].innerHTML) {
+				alert(boxes[0].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[1].innerHTML!="" && boxes[1].innerHTML==boxes[4].innerHTML && boxes[4].innerHTML==boxes[7].innerHTML) {
+				alert(boxes[1].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[2].innerHTML!="" && boxes[2].innerHTML==boxes[5].innerHTML && boxes[5].innerHTML==boxes[8].innerHTML) {
+				alert(boxes[2].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[0].innerHTML!="" && boxes[0].innerHTML==boxes[4].innerHTML && boxes[4].innerHTML==boxes[8].innerHTML) {
+				alert(boxes[0].innerHTML+" is the winner!");
+				resetGame();
+			}else if (boxes[2].innerHTML!="" && boxes[2].innerHTML==boxes[4].innerHTML && boxes[4].innerHTML==boxes[6].innerHTML) {
+				alert(boxes[2].innerHTML+" is the winner!");
+				resetGame();
+			}else{
+				var empty = 0;
+				for(i=0;i<boxes.length;i++){
+					if (boxes[i].innerHTML=="") {
+						empty++;
+					}
+				}
+				if(empty==0){
+					alert("Draw!");
+					resetGame();
+				}
 			}
-			.player1 { 
-				float: left; 
-				margin-right: 20px; 
-				text-align: center; 
-				width: 200px; 
-				border-radius: 10px; 
-				background-color: lightgreen; 
-				padding: 10px;
-				margin-bottom: 10px;
+		}
+		function clickedBox(box){
+			if (box.innerHTML=="") {
+				if (turn%2==0) {
+					box.innerHTML="X";
+				}else{
+					box.innerHTML="O";
+				}
+				turn++;
+				checkWinner();
 			}
-			.player2 { 
-				float: right; 
-				text-align: center; 
-				width: 200px; 
-				border-radius: 10px; 
-				background-color: lightcoral; 
-				padding: 10px;
-				margin-bottom: 10px;
+		}
+		function resetGame(){
+			var boxes = document.getElementsByClassName("box");
+			for(i=0;i<boxes.length;i++){
+				boxes[I].innerHTML="";
 			}
-			.score { 
-				text-align: center; 
-				background-color: white; 
-				padding: 10px; 
-				border-radius: 10px; 
-				width: 200px; 
-				margin: 0 auto; 
-			}
-			.btn { 
-				background-color: #27ae60; 
-				color: white; 
-				border-radius: 10px; 
-				padding: 10px;
-				margin: 10px;
-			}
-			.btn:hover { 
-				background-color: #2ecc71; 
-				color: white; 
-				border-radius: 10px; 
-				padding: 10px;
-				margin: 10px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="main">
-			<div class="player1">
-				<h3>Player 1</h3>
-				<h2><?php echo $player1Score; ?></h2>
-				<a href="?player1=up" class="btn">UP</a>
-			</div>
-			<div class="player2">
-				<h3>Player 2</h3>
-				<h2><?php echo $player2Score; ?></h2>
-				<a href="?player2=up" class="btn">UP</a>
-			</div>
-			<div class="score">
-				<h3>Score</h3>
-				<h2>
-					<?php 
-						if(isset($_GET['player1']) && $_GET['player1'] == 'up') {
-							$player1Score++;
-						}
-						if(isset($_GET['player2']) && $_GET['player2'] == 'up') {
-							$player2Score++;
-						}
-						echo $player1Score . ' - ' . $player2Score;
-					?>
-				</h2>
-			</div>
-		</div>
-	</body>
-</HTML>
+			turn=0;
+		}
+		var turn = 0;
+	</script>
+</head>
+<body>
+	<h1>Tic Tac Toe Game</h1>
+	<div class="container">
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="clear"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="clear"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="box" onclick="clickedBox(this)"></div>
+		<div class="clear"></div>
+	</div>
+	<button onclick="resetGame()">Reset</button>
+</body>
+</html>
