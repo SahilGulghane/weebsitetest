@@ -12,6 +12,7 @@
 		font-size: 30px;
 		line-height: 50px;
 		cursor: pointer;
+		background-color: #f2f2f2;
 	}
 	.clear {
 		clear: both;
