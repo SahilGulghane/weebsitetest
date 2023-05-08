@@ -1,36 +1,107 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<HTML>
 <head>
-    <title>RCOEM College Feedback Survey</title>
-    <style>
-        body {
-            background-image: URL("https://img.collegepravesh.com/2022/05/RCOEM-Nagpur.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
+	<title>My Game</title>
+	<style type="text/css">
+		body {
+			background-color: white;
+			text-align: center;
+		}
+		
+		#game {
+			width: 500px;
+			height: 500px;
+			margin: auto;
+			border: 1px solid black;
+		}
+		
+		#player {
+			width: 50px;
+			height: 50px;
+			background-color: blue;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		
+		#obstacle {
+			width: 50px;
+			height: 50px;
+			background-color: red;
+			position: absolute;
+			left: 400px;
+			top: 400px;
+		}
+		
+		#goal {
+			width: 50px;
+			height: 50px;
+			background-color: green;
+			position: absolute;
+			left: 450px;
+			top: 0;
+		}
+		
+		#info {
+			margin: 0 auto;
+			text-align: center;
+			font-size: 18px;
+		}
+	</style>
+	<script>
+		// initial position of the player
+		var leftPos = 0;
+		var topPos = 0;
+		
+		// get the player element
+		var player = document.getElementById('player');
+		
+		// move the player on key press
+		document.onkeydown = function(e) {
+			switch (e.keyCode) {
+				case 37: // left arrow
+					if (leftPos > 0) {
+						leftPos -= 50;
+						player.style.left = leftPos + 'px';
+					}
+					break;
+				case 38: // up arrow
+					if (topPos > 0) {
+						topPos -= 50;
+						player.style.top = topPos + 'px';
+					}
+					break;
+				case 39: // right arrow
+					if (leftPos < 450) {
+						leftPos += 50;
+						player.style.left = leftPos + 'px';
+					}
+					break;
+				case 40: // down arrow
+					if (topPos < 450) {
+						topPos += 50;
+						player.style.top = topPos + 'px';
+					}
+					break;
+			}
+			
+			if (leftPos == 450 && topPos == 0) {
+				// player has reached the goal
+				document.getElementById('info').innerHTML = 'You win!';
+			}
+			if (leftPos == 400 && topPos == 400) {
+				// player has encountered the obstacle
+				document.getElementById('info').innerHTML = 'You lose!';
+			}
+		}
+	</script>
 </head>
 <body>
-    <h2>RCOEM College Feedback Survey</h2>
-    <p>We would love to hear your feedback about your experience at RCOEM. Please answer the following questions. Thank you!</p>
-    <form action="">
-        <p>Did you enjoy your experience at RCOEM?</p>
-        <input type="radio" name="experience" value="yes">Yes <be>
-        <input type="radio" name="experience" value="no">No <br>
-
-        <p>Would you recommend RCOEM to a friend?</p>
-        <input type="radio" name="recommend" value="yes">Yes <br>
-        <input type="radio" name="recommend" value="no">No <br>
-
-        <p>Would you consider studying at RCOEM again?</p>
-        <input type="radio" name="studying" value="yes">Yes <br>
-        <input type="radio" name="studying" value="no">No <be>
-
-        <p>Do you feel like your time at RCOEM was well-spent?</p>
-        <input type="radio" name="time" value="yes">Yes <be>
-        <input type="radio" name="time" value="no">No <be>
-
-       be <input type="submit" value="Submit">
-    </form>
+	<div id="game">
+		<div id="player"></div>
+		<div id="obstacle"></div>
+		<div id="goal"></div>
+	</div>
+	<div id="info">Use the arrow keys to move the player. Avoid the obstacle and reach the goal to win!</div>
 </body>
-</html>
+</HTML>
